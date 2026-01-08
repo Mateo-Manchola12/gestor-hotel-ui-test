@@ -5,129 +5,96 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GestorHotel.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="950"
+      d:DesignHeight="750" d:DesignWidth="1100"
       Title="ReservasView">
 
-    <Grid Background="#ECF0F1">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Header -->
-        <Border Grid.Row="0" Background="#E67E22" Padding="20">
-            <TextBlock Text="Gestión de Reservas" 
-                       FontSize="24" 
-                       FontWeight="Bold" 
-                       Foreground="White"/>
-        </Border>
-
-        <!-- Content -->
-        <Grid Grid.Row="1" Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <!-- Search and Add Section -->
-            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
-                <TextBox x:Name="txtSearch" 
-                         Width="300" 
-                         Height="35" 
-                         VerticalContentAlignment="Center"
-                         Margin="0,0,10,0"
-                         FontSize="14">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Foreground" Value="Black"/>
-                            <Style.Triggers>
-                                <Trigger Property="Text" Value="">
-                                    <Setter Property="Background">
-                                        <Setter.Value>
-                                            <VisualBrush Stretch="None" AlignmentX="Left">
-                                                <VisualBrush.Visual>
-                                                    <TextBlock Text="Buscar reserva..." 
-                                                               Foreground="Gray" 
-                                                               Margin="5,0,0,0"
-                                                               FontSize="14"/>
-                                                </VisualBrush.Visual>
-                                            </VisualBrush>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
-                <Button Content="Buscar" 
-                        Width="100" 
-                        Height="35" 
-                        Background="#E67E22" 
-                        Foreground="White" 
-                        FontSize="14" 
-                        Margin="0,0,10,0"
-                        Cursor="Hand"/>
-                <Button Content="+ Nueva Reserva" 
-                        Width="150" 
-                        Height="35" 
-                        Background="#27AE60" 
-                        Foreground="White" 
-                        FontSize="14"
-                        Cursor="Hand"/>
-            </StackPanel>
-
-            <!-- Reservations DataGrid -->
-            <DataGrid Grid.Row="1" 
-                      x:Name="dgReservas"
-                      AutoGenerateColumns="False" 
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      IsReadOnly="True"
-                      Background="White"
-                      AlternatingRowBackground="#F8F9FA"
-                      GridLinesVisibility="None"
-                      HeadersVisibility="Column"
-                      RowHeight="40">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID Reserva" Binding="{Binding Id}" Width="100"/>
-                    <DataGridTextColumn Header="Huésped" Binding="{Binding Huesped}" Width="150"/>
-                    <DataGridTextColumn Header="Habitación" Binding="{Binding Habitacion}" Width="100"/>
-                    <DataGridTextColumn Header="Check-In" Binding="{Binding CheckIn}" Width="120"/>
-                    <DataGridTextColumn Header="Check-Out" Binding="{Binding CheckOut}" Width="120"/>
-                    <DataGridTextColumn Header="Noches" Binding="{Binding Noches}" Width="80"/>
-                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="100"/>
-                    <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="100"/>
-                    <DataGridTemplateColumn Header="Acciones" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="Ver" 
-                                            Width="70" 
-                                            Height="30" 
-                                            Background="#E67E22" 
-                                            Foreground="White" 
-                                            Margin="5,0"
-                                            Cursor="Hand"/>
-                                    <Button Content="Editar" 
-                                            Width="70" 
-                                            Height="30" 
-                                            Background="#F39C12" 
-                                            Foreground="White" 
-                                            Margin="5,0"
-                                            Cursor="Hand"/>
-                                    <Button Content="Cancelar" 
-                                            Width="70" 
-                                            Height="30" 
-                                            Background="#E74C3C" 
-                                            Foreground="White" 
-                                            Margin="5,0"
-                                            Cursor="Hand"/>
+    <Grid Background="Transparent">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="30,20">
+                <!-- Title -->
+                <TextBlock Text="Gestión de Reservas" 
+                           FontSize="32" 
+                           FontWeight="Bold" 
+                           Foreground="White" 
+                           Margin="0,0,0,30"/>
+                
+                <!-- Stats Cards -->
+                <WrapPanel Margin="0,0,0,30">
+                    <Border Background="#1e1536" CornerRadius="12" Padding="25" Margin="0,0,15,0" Width="250" BorderBrush="#2d2055" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Reservas Activas" FontSize="14" Foreground="#8b8ba7" Margin="0,0,0,10"/>
+                            <TextBlock Text="42" FontSize="36" FontWeight="Bold" Foreground="#5b21b6"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#1e1536" CornerRadius="12" Padding="25" Margin="0,0,15,0" Width="250" BorderBrush="#2d2055" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Llegadas Hoy" FontSize="14" Foreground="#8b8ba7" Margin="0,0,0,10"/>
+                            <TextBlock Text="8" FontSize="36" FontWeight="Bold" Foreground="#4ade80"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#1e1536" CornerRadius="12" Padding="25" Margin="0,0,15,0" Width="250" BorderBrush="#2d2055" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Salidas Hoy" FontSize="14" Foreground="#8b8ba7" Margin="0,0,0,10"/>
+                            <TextBlock Text="5" FontSize="36" FontWeight="Bold" Foreground="#f59e0b"/>
+                        </StackPanel>
+                    </Border>
+                </WrapPanel>
+                
+                <!-- Recent Reservations -->
+                <TextBlock Text="Reservas Recientes" FontSize="20" FontWeight="SemiBold" Foreground="White" Margin="0,0,0,15"/>
+                <Border Background="#1e1536" CornerRadius="12" Padding="20" BorderBrush="#2d2055" BorderThickness="1">
+                    <StackPanel>
+                        <!-- Reservation Item -->
+                        <Border BorderBrush="#2d2055" BorderThickness="0,0,0,1" Padding="0,15">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Xylara-Torak - Suite 401" FontSize="16" FontWeight="SemiBold" Foreground="White" Margin="0,0,0,5"/>
+                                    <TextBlock Text="May 4, 2024 - May 6, 2024" FontSize="13" Foreground="#8b8ba7"/>
                                 </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
+                                <Border Grid.Column="1" Background="#4ade80" CornerRadius="8" Padding="12,6" VerticalAlignment="Center">
+                                    <TextBlock Text="Confirmada" Foreground="White" FontSize="12" FontWeight="SemiBold"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        
+                        <Border BorderBrush="#2d2055" BorderThickness="0,0,0,1" Padding="0,15">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Captain Vlex - Estelar 305" FontSize="16" FontWeight="SemiBold" Foreground="White" Margin="0,0,0,5"/>
+                                    <TextBlock Text="May 5, 2024 - May 8, 2024" FontSize="13" Foreground="#8b8ba7"/>
+                                </StackPanel>
+                                <Border Grid.Column="1" Background="#a16207" CornerRadius="8" Padding="12,6" VerticalAlignment="Center">
+                                    <TextBlock Text="Pendiente" Foreground="White" FontSize="12" FontWeight="SemiBold"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        
+                        <Border Padding="0,15">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Dr. Zorgul - Galáctica 708" FontSize="16" FontWeight="SemiBold" Foreground="White" Margin="0,0,0,5"/>
+                                    <TextBlock Text="May 6, 2024 - May 10, 2024" FontSize="13" Foreground="#8b8ba7"/>
+                                </StackPanel>
+                                <Border Grid.Column="1" Background="#4ade80" CornerRadius="8" Padding="12,6" VerticalAlignment="Center">
+                                    <TextBlock Text="Confirmada" Foreground="White" FontSize="12" FontWeight="SemiBold"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

@@ -5,127 +5,113 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GestorHotel.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="950"
+      d:DesignHeight="750" d:DesignWidth="1100"
       Title="HabitacionesView">
+    
+    <Page.Resources>
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#1e1536"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="BorderBrush" Value="#2d2055"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Page.Resources>
 
-    <Grid Background="#ECF0F1">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Header -->
-        <Border Grid.Row="0" Background="#3498DB" Padding="20">
-            <TextBlock Text="Gestión de Habitaciones" 
-                       FontSize="24" 
-                       FontWeight="Bold" 
-                       Foreground="White"/>
-        </Border>
-
-        <!-- Content -->
-        <Grid Grid.Row="1" Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <!-- Search and Add Section -->
-            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
-                <TextBox x:Name="txtSearch" 
-                         Width="300" 
-                         Height="35" 
-                         VerticalContentAlignment="Center"
-                         Margin="0,0,10,0"
-                         FontSize="14">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Foreground" Value="Black"/>
-                            <Style.Triggers>
-                                <Trigger Property="Text" Value="">
-                                    <Setter Property="Background">
-                                        <Setter.Value>
-                                            <VisualBrush Stretch="None" AlignmentX="Left">
-                                                <VisualBrush.Visual>
-                                                    <TextBlock Text="Buscar habitación..." 
-                                                               Foreground="Gray" 
-                                                               Margin="5,0,0,0"
-                                                               FontSize="14"/>
-                                                </VisualBrush.Visual>
-                                            </VisualBrush>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
-                <Button Content="Buscar" 
-                        Width="100" 
-                        Height="35" 
-                        Background="#3498DB" 
-                        Foreground="White" 
-                        FontSize="14" 
-                        Margin="0,0,10,0"
-                        Cursor="Hand"/>
-                <Button Content="+ Nueva Habitación" 
-                        Width="150" 
-                        Height="35" 
-                        Background="#27AE60" 
-                        Foreground="White" 
-                        FontSize="14"
-                        Cursor="Hand"/>
+    <Grid Background="Transparent">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="30,20">
+                <!-- Title -->
+                <TextBlock Text="Habitaciones Galácticas" 
+                           FontSize="32" 
+                           FontWeight="Bold" 
+                           Foreground="White" 
+                           Margin="0,0,0,30"/>
+                
+                <!-- Room Cards Grid -->
+                <WrapPanel>
+                    <!-- Suite Lunar -->
+                    <Border Style="{StaticResource CardStyle}" Width="320">
+                        <StackPanel>
+                            <Rectangle Height="180" Fill="#5b21b6" RadiusX="8" RadiusY="8" Margin="0,0,0,15"/>
+                            <TextBlock Text="Suite Lunar 401" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,8"/>
+                            <TextBlock Text="Lujo estelar con vistas a nebulosas" FontSize="13" Foreground="#8b8ba7" Margin="0,0,0,15"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="👥 " FontSize="14" Foreground="#b8b8d1"/>
+                                <TextBlock Text="4 personas" FontSize="13" Foreground="#b8b8d1"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="💰 " FontSize="14" Foreground="#b8b8d1"/>
+                                <TextBlock Text="500 créditos/noche" FontSize="13" Foreground="#b8b8d1"/>
+                            </StackPanel>
+                            <Border Background="#4ade80" CornerRadius="8" Padding="8,5" Margin="0,10,0,0" HorizontalAlignment="Left">
+                                <TextBlock Text="Disponible" Foreground="White" FontSize="12" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- Pod Estelar -->
+                    <Border Style="{StaticResource CardStyle}" Width="320">
+                        <StackPanel>
+                            <Rectangle Height="180" Fill="#3b82f6" RadiusX="8" RadiusY="8" Margin="0,0,0,15"/>
+                            <TextBlock Text="Pod Estelar 206" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,8"/>
+                            <TextBlock Text="Cápsula compacta para viajeros" FontSize="13" Foreground="#8b8ba7" Margin="0,0,0,15"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="👥 " FontSize="14" Foreground="#b8b8d1"/>
+                                <TextBlock Text="2 personas" FontSize="13" Foreground="#b8b8d1"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="💰 " FontSize="14" Foreground="#b8b8d1"/>
+                                <TextBlock Text="200 créditos/noche" FontSize="13" Foreground="#b8b8d1"/>
+                            </StackPanel>
+                            <Border Background="#991b1b" CornerRadius="8" Padding="8,5" Margin="0,10,0,0" HorizontalAlignment="Left">
+                                <TextBlock Text="Ocupada" Foreground="White" FontSize="12" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- Habitación Galáctica -->
+                    <Border Style="{StaticResource CardStyle}" Width="320">
+                        <StackPanel>
+                            <Rectangle Height="180" Fill="#10b981" RadiusX="8" RadiusY="8" Margin="0,0,0,15"/>
+                            <TextBlock Text="Galáctica 708" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,8"/>
+                            <TextBlock Text="Confort espacial estándar" FontSize="13" Foreground="#8b8ba7" Margin="0,0,0,15"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="👥 " FontSize="14" Foreground="#b8b8d1"/>
+                                <TextBlock Text="3 personas" FontSize="13" Foreground="#b8b8d1"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="💰 " FontSize="14" Foreground="#b8b8d1"/>
+                                <TextBlock Text="350 créditos/noche" FontSize="13" Foreground="#b8b8d1"/>
+                            </StackPanel>
+                            <Border Background="#4ade80" CornerRadius="8" Padding="8,5" Margin="0,10,0,0" HorizontalAlignment="Left">
+                                <TextBlock Text="Disponible" Foreground="White" FontSize="12" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- Observatorio 305 -->
+                    <Border Style="{StaticResource CardStyle}" Width="320">
+                        <StackPanel>
+                            <Rectangle Height="180" Fill="#a855f7" RadiusX="8" RadiusY="8" Margin="0,0,0,15"/>
+                            <TextBlock Text="Observatorio 305" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,8"/>
+                            <TextBlock Text="Con telescopio de largo alcance" FontSize="13" Foreground="#8b8ba7" Margin="0,0,0,15"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="👥 " FontSize="14" Foreground="#b8b8d1"/>
+                                <TextBlock Text="2 personas" FontSize="13" Foreground="#b8b8d1"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="💰 " FontSize="14" Foreground="#b8b8d1"/>
+                                <TextBlock Text="450 créditos/noche" FontSize="13" Foreground="#b8b8d1"/>
+                            </StackPanel>
+                            <Border Background="#a16207" CornerRadius="8" Padding="8,5" Margin="0,10,0,0" HorizontalAlignment="Left">
+                                <TextBlock Text="Mantenimiento" Foreground="White" FontSize="12" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </WrapPanel>
             </StackPanel>
-
-            <!-- Rooms DataGrid -->
-            <DataGrid Grid.Row="1" 
-                      x:Name="dgHabitaciones"
-                      AutoGenerateColumns="False" 
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      IsReadOnly="True"
-                      Background="White"
-                      AlternatingRowBackground="#F8F9FA"
-                      GridLinesVisibility="None"
-                      HeadersVisibility="Column"
-                      RowHeight="40">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Número" Binding="{Binding Numero}" Width="100"/>
-                    <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}" Width="150"/>
-                    <DataGridTextColumn Header="Capacidad" Binding="{Binding Capacidad}" Width="100"/>
-                    <DataGridTextColumn Header="Precio/Noche" Binding="{Binding Precio}" Width="120"/>
-                    <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="120"/>
-                    <DataGridTextColumn Header="Piso" Binding="{Binding Piso}" Width="80"/>
-                    <DataGridTemplateColumn Header="Acciones" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="Ver" 
-                                            Width="70" 
-                                            Height="30" 
-                                            Background="#3498DB" 
-                                            Foreground="White" 
-                                            Margin="5,0"
-                                            Cursor="Hand"/>
-                                    <Button Content="Editar" 
-                                            Width="70" 
-                                            Height="30" 
-                                            Background="#F39C12" 
-                                            Foreground="White" 
-                                            Margin="5,0"
-                                            Cursor="Hand"/>
-                                    <Button Content="Eliminar" 
-                                            Width="70" 
-                                            Height="30" 
-                                            Background="#E74C3C" 
-                                            Foreground="White" 
-                                            Margin="5,0"
-                                            Cursor="Hand"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>
