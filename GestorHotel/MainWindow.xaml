@@ -5,24 +5,192 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestorHotel"
         mc:Ignorable="d"
-        Title="Gestor de Hotel" Height="600" Width="1000"
+        Title="Galactic Haven" Height="800" Width="1400"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    
+    <Window.Resources>
+        <!-- Cosmic Background Gradient -->
+        <LinearGradientBrush x:Key="CosmicBackground" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#1a0a2e" Offset="0"/>
+            <GradientStop Color="#16213e" Offset="0.5"/>
+            <GradientStop Color="#0f3460" Offset="1"/>
+        </LinearGradientBrush>
         
-        <!-- Navigation Menu -->
-        <Menu Grid.Row="0" Background="#2C3E50" Foreground="White" Padding="5">
-            <MenuItem Header="Habitaciones" Click="NavigateToHabitaciones" Foreground="White" FontSize="14" Padding="10,5"/>
-            <MenuItem Header="Huéspedes" Click="NavigateToHuespedes" Foreground="White" FontSize="14" Padding="10,5"/>
-            <MenuItem Header="Reservas" Click="NavigateToReservas" Foreground="White" FontSize="14" Padding="10,5"/>
-            <MenuItem Header="Reseñas" Click="NavigateToResenas" Foreground="White" FontSize="14" Padding="10,5"/>
-            <MenuItem Header="Empleados" Click="NavigateToEmpleados" Foreground="White" FontSize="14" Padding="10,5"/>
-        </Menu>
+        <!-- Sidebar Background -->
+        <LinearGradientBrush x:Key="SidebarBackground" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#1a0a2e" Offset="0"/>
+            <GradientStop Color="#16213e" Offset="1"/>
+        </LinearGradientBrush>
         
-        <!-- Content Frame -->
-        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        <!-- Button Style for Navigation -->
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#b8b8d1"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,12"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                Padding="{TemplateBinding Padding}"
+                                CornerRadius="8"
+                                Margin="5,3">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2d2055"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Background="{StaticResource CosmicBackground}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Left Sidebar -->
+        <Border Grid.Column="0" Background="{StaticResource SidebarBackground}" 
+                BorderBrush="#2d2055" BorderThickness="0,0,1,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <!-- Logo and Title -->
+                <StackPanel Grid.Row="0" Margin="20,25,20,30">
+                    <Ellipse Width="60" Height="60" HorizontalAlignment="Left">
+                        <Ellipse.Fill>
+                            <RadialGradientBrush>
+                                <GradientStop Color="#5b86e5" Offset="0"/>
+                                <GradientStop Color="#36d1dc" Offset="1"/>
+                            </RadialGradientBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock Text="Galactic Haven" 
+                               FontSize="20" 
+                               FontWeight="Bold" 
+                               Foreground="White"
+                               Margin="0,12,0,3"/>
+                    <TextBlock Text="Dashboard" 
+                               FontSize="13" 
+                               Foreground="#8b8ba7"
+                               Margin="0,0,0,0"/>
+                </StackPanel>
+                
+                <!-- Navigation Menu -->
+                <StackPanel Grid.Row="1" Margin="15,0,15,0">
+                    <Button x:Name="btnHabitaciones" Content="🏠  Habitaciones" 
+                            Style="{StaticResource NavButtonStyle}" 
+                            Click="NavigateToHabitaciones"/>
+                    <Button x:Name="btnHuespedes" Content="👽  Huéspedes" 
+                            Style="{StaticResource NavButtonStyle}" 
+                            Background="#3d2d6d"
+                            Click="NavigateToHuespedes"/>
+                    <Button x:Name="btnReservas" Content="📅  Reservas" 
+                            Style="{StaticResource NavButtonStyle}" 
+                            Click="NavigateToReservas"/>
+                    <Button x:Name="btnResenas" Content="⭐  Reseñas" 
+                            Style="{StaticResource NavButtonStyle}" 
+                            Click="NavigateToResenas"/>
+                    <Button x:Name="btnEmpleados" Content="👤  Empleados" 
+                            Style="{StaticResource NavButtonStyle}" 
+                            Click="NavigateToEmpleados"/>
+                </StackPanel>
+                
+                <!-- Bottom Navigation -->
+                <StackPanel Grid.Row="2" Margin="15,0,15,25">
+                    <Separator Background="#2d2055" Margin="0,0,0,15"/>
+                    <Button Content="⚙️  Configuración" 
+                            Style="{StaticResource NavButtonStyle}"/>
+                    <Button Content="❓  Ayuda" 
+                            Style="{StaticResource NavButtonStyle}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+        <!-- Main Content Area -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Top Bar -->
+            <Border Grid.Row="0" Background="#1a0a2e" Padding="30,20" 
+                    BorderBrush="#2d2055" BorderThickness="0,0,0,1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- Search Box -->
+                    <Border Grid.Column="0" Background="#2d2055" 
+                            CornerRadius="20" Padding="15,10"
+                            MaxWidth="600" HorizontalAlignment="Left">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="🔍" FontSize="16" Margin="0,0,10,0" 
+                                       Foreground="#8b8ba7" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" 
+                                     x:Name="txtGlobalSearch"
+                                     Background="Transparent" 
+                                     BorderThickness="0"
+                                     Foreground="#b8b8d1"
+                                     VerticalContentAlignment="Center"
+                                     FontSize="14">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Style.Triggers>
+                                            <Trigger Property="Text" Value="">
+                                                <Setter Property="Tag" Value="Buscar..."/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- User Profile -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Ellipse Width="45" Height="45" Margin="0,0,12,0">
+                            <Ellipse.Fill>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="#7c3aed" Offset="0"/>
+                                    <GradientStop Color="#5b21b6" Offset="1"/>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Administrador Zorak" 
+                                       FontSize="14" 
+                                       FontWeight="SemiBold"
+                                       Foreground="White"/>
+                            <TextBlock Text="Administrador" 
+                                       FontSize="12" 
+                                       Foreground="#8b8ba7"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            
+            <!-- Content Frame -->
+            <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Background="Transparent"/>
+        </Grid>
     </Grid>
 </Window>

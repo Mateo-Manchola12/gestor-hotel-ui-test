@@ -20,32 +20,51 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        // Navigate to Habitaciones by default
-        MainFrame.Navigate(new HabitacionesView());
+        // Navigate to Huéspedes by default to match reference design
+        MainFrame.Navigate(new HuespedesView());
+        btnHuespedes.Background = new SolidColorBrush(Color.FromRgb(61, 45, 109));
     }
 
     private void NavigateToHabitaciones(object sender, RoutedEventArgs e)
     {
         MainFrame.Navigate(new HabitacionesView());
+        UpdateActiveButton(btnHabitaciones);
     }
 
     private void NavigateToHuespedes(object sender, RoutedEventArgs e)
     {
         MainFrame.Navigate(new HuespedesView());
+        UpdateActiveButton(btnHuespedes);
     }
 
     private void NavigateToReservas(object sender, RoutedEventArgs e)
     {
         MainFrame.Navigate(new ReservasView());
+        UpdateActiveButton(btnReservas);
     }
 
     private void NavigateToResenas(object sender, RoutedEventArgs e)
     {
         MainFrame.Navigate(new ResenasView());
+        UpdateActiveButton(btnResenas);
     }
 
     private void NavigateToEmpleados(object sender, RoutedEventArgs e)
     {
         MainFrame.Navigate(new EmpleadosView());
+        UpdateActiveButton(btnEmpleados);
+    }
+    
+    private void UpdateActiveButton(Button activeButton)
+    {
+        // Reset all buttons
+        btnHabitaciones.Background = new SolidColorBrush(Colors.Transparent);
+        btnHuespedes.Background = new SolidColorBrush(Colors.Transparent);
+        btnReservas.Background = new SolidColorBrush(Colors.Transparent);
+        btnResenas.Background = new SolidColorBrush(Colors.Transparent);
+        btnEmpleados.Background = new SolidColorBrush(Colors.Transparent);
+        
+        // Set active button
+        activeButton.Background = new SolidColorBrush(Color.FromRgb(61, 45, 109));
     }
 }
