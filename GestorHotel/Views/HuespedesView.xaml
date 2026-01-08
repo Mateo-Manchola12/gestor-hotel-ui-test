@@ -5,127 +5,244 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GestorHotel.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="950"
+      d:DesignHeight="750" d:DesignWidth="1100"
       Title="HuespedesView">
+    
+    <Page.Resources>
+        <!-- Status Badge Styles -->
+        <Style x:Key="StatusBadgeConfirmed" TargetType="Border">
+            <Setter Property="Background" Value="#4ade80"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="14,6"/>
+        </Style>
+        
+        <Style x:Key="StatusBadgePending" TargetType="Border">
+            <Setter Property="Background" Value="#a16207"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="14,6"/>
+        </Style>
+        
+        <Style x:Key="StatusBadgeCancelled" TargetType="Border">
+            <Setter Property="Background" Value="#991b1b"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="14,6"/>
+        </Style>
+        
+        <!-- Button Styles -->
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#3d2d6d"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="18,10"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                Padding="{TemplateBinding Padding}"
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4d3d7d"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#5b21b6"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="18,10"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                Padding="{TemplateBinding Padding}"
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#6d28d9"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
 
-    <Grid Background="#ECF0F1">
+    <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Header -->
-        <Border Grid.Row="0" Background="#9B59B6" Padding="20">
-            <TextBlock Text="Gestión de Huéspedes" 
-                       FontSize="24" 
-                       FontWeight="Bold" 
-                       Foreground="White"/>
+        <!-- Action Buttons Bar -->
+        <Border Grid.Row="0" Background="Transparent" Padding="30,20,30,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Button Content="➕  Nueva Reserva" Style="{StaticResource PrimaryButtonStyle}"/>
+                    <Button Content="📅  Fechas ▾" Style="{StaticResource ActionButtonStyle}"/>
+                    <Button Content="☑️  Estado ▾" Style="{StaticResource ActionButtonStyle}"/>
+                    <Button Content="📋  Tipo ▾" Style="{StaticResource ActionButtonStyle}"/>
+                    <Button Content="👤  Empleado" Style="{StaticResource ActionButtonStyle}"/>
+                </StackPanel>
+                
+                <Button Grid.Column="1" Content="Restablecer" Style="{StaticResource ActionButtonStyle}"/>
+            </Grid>
         </Border>
 
-        <!-- Content -->
-        <Grid Grid.Row="1" Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <!-- Data Table -->
+        <Border Grid.Row="1" Background="#1e1536" Margin="30,0,30,15" 
+                CornerRadius="12" BorderBrush="#2d2055" BorderThickness="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <Grid>
+                    <!-- Table Header -->
+                    <Grid Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!-- Header Row -->
+                        <Border Grid.Row="0" Background="#251b47" 
+                                BorderBrush="#2d2055" BorderThickness="0,0,0,1"
+                                Padding="20,15">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2.5*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Grid.Column="0" Text="Huésped ▼" Foreground="#8b8ba7" FontSize="13" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="1" Text="Habitación ▼" Foreground="#8b8ba7" FontSize="13" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="2" Text="Check-In ▼" Foreground="#8b8ba7" FontSize="13" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="3" Text="Check-Out ▼" Foreground="#8b8ba7" FontSize="13" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="4" Text="Estado ▼" Foreground="#8b8ba7" FontSize="13" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="5" Text="Empleado" Foreground="#8b8ba7" FontSize="13" FontWeight="SemiBold"/>
+                            </Grid>
+                        </Border>
+                        
+                        <!-- Data Rows -->
+                        <ItemsControl Grid.Row="1" x:Name="icHuespedes" Margin="0,0,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#2d2055" BorderThickness="0,0,0,1" 
+                                            Background="Transparent" Padding="20,15"
+                                            MouseEnter="Row_MouseEnter" 
+                                            MouseLeave="Row_MouseLeave">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2.5*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <ColumnDefinition Width="1.5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <!-- Guest Info with Avatar -->
+                                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                <Ellipse Width="40" Height="40" Margin="0,0,12,0">
+                                                    <Ellipse.Fill>
+                                                        <RadialGradientBrush>
+                                                            <GradientStop Color="{Binding AvatarColor1}" Offset="0"/>
+                                                            <GradientStop Color="{Binding AvatarColor2}" Offset="1"/>
+                                                        </RadialGradientBrush>
+                                                    </Ellipse.Fill>
+                                                </Ellipse>
+                                                <StackPanel VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding GuestName}" Foreground="White" FontSize="14" FontWeight="SemiBold"/>
+                                                    <TextBlock Text="{Binding GuestType}" Foreground="#8b8ba7" FontSize="12"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            
+                                            <!-- Room Info -->
+                                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding RoomNumber}" Foreground="White" FontSize="14" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding RoomType}" Foreground="#8b8ba7" FontSize="12"/>
+                                            </StackPanel>
+                                            
+                                            <!-- Check-In Date -->
+                                            <TextBlock Grid.Column="2" Text="{Binding CheckIn}" 
+                                                       Foreground="#b8b8d1" FontSize="13" VerticalAlignment="Center"/>
+                                            
+                                            <!-- Check-Out Date -->
+                                            <TextBlock Grid.Column="3" Text="{Binding CheckOut}" 
+                                                       Foreground="#b8b8d1" FontSize="13" VerticalAlignment="Center"/>
+                                            
+                                            <!-- Status Badge -->
+                                            <Border Grid.Column="4" Style="{Binding StatusStyle}" 
+                                                    HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Status}" 
+                                                           Foreground="White" FontSize="12" FontWeight="SemiBold"/>
+                                            </Border>
+                                            
+                                            <!-- Employee -->
+                                            <StackPanel Grid.Column="5" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Employee}" Foreground="#b8b8d1" FontSize="13"/>
+                                                <TextBlock Text="  ➤" Foreground="#5b8ba7" FontSize="12" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+        </Border>
 
-            <!-- Search and Add Section -->
-            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
-                <TextBox x:Name="txtSearch" 
-                         Width="300" 
-                         Height="35" 
-                         VerticalContentAlignment="Center"
-                         Margin="0,0,10,0"
-                         FontSize="14">
-                    <TextBox.Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Foreground" Value="Black"/>
-                            <Style.Triggers>
-                                <Trigger Property="Text" Value="">
-                                    <Setter Property="Background">
-                                        <Setter.Value>
-                                            <VisualBrush Stretch="None" AlignmentX="Left">
-                                                <VisualBrush.Visual>
-                                                    <TextBlock Text="Buscar huésped..." 
-                                                               Foreground="Gray" 
-                                                               Margin="5,0,0,0"
-                                                               FontSize="14"/>
-                                                </VisualBrush.Visual>
-                                            </VisualBrush>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
-                <Button Content="Buscar" 
-                        Width="100" 
-                        Height="35" 
-                        Background="#9B59B6" 
-                        Foreground="White" 
-                        FontSize="14" 
-                        Margin="0,0,10,0"
-                        Cursor="Hand"/>
-                <Button Content="+ Nuevo Huésped" 
-                        Width="150" 
-                        Height="35" 
-                        Background="#27AE60" 
-                        Foreground="White" 
-                        FontSize="14"
-                        Cursor="Hand"/>
-            </StackPanel>
-
-            <!-- Guests DataGrid -->
-            <DataGrid Grid.Row="1" 
-                      x:Name="dgHuespedes"
-                      AutoGenerateColumns="False" 
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      IsReadOnly="True"
-                      Background="White"
-                      AlternatingRowBackground="#F8F9FA"
-                      GridLinesVisibility="None"
-                      HeadersVisibility="Column"
-                      RowHeight="40">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="80"/>
-                    <DataGridTextColumn Header="Nombre Completo" Binding="{Binding Nombre}" Width="200"/>
-                    <DataGridTextColumn Header="Documento" Binding="{Binding Documento}" Width="120"/>
-                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="200"/>
-                    <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}" Width="120"/>
-                    <DataGridTextColumn Header="País" Binding="{Binding Pais}" Width="100"/>
-                    <DataGridTemplateColumn Header="Acciones" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="Ver" 
-                                            Width="70" 
-                                            Height="30" 
-                                            Background="#9B59B6" 
-                                            Foreground="White" 
-                                            Margin="5,0"
-                                            Cursor="Hand"/>
-                                    <Button Content="Editar" 
-                                            Width="70" 
-                                            Height="30" 
-                                            Background="#F39C12" 
-                                            Foreground="White" 
-                                            Margin="5,0"
-                                            Cursor="Hand"/>
-                                    <Button Content="Eliminar" 
-                                            Width="70" 
-                                            Height="30" 
-                                            Background="#E74C3C" 
-                                            Foreground="White" 
-                                            Margin="5,0"
-                                            Cursor="Hand"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
+        <!-- Pagination -->
+        <Border Grid.Row="2" Background="Transparent" Padding="30,0,30,25">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" Text="Página 1 de 8" 
+                           Foreground="#8b8ba7" FontSize="13" VerticalAlignment="Center"/>
+                
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button Content="◄" Width="40" Height="40" 
+                            Style="{StaticResource ActionButtonStyle}" Margin="5,0"/>
+                    <Border Background="#5b21b6" CornerRadius="8" Padding="15,10" Margin="5,0">
+                        <TextBlock Text="1" Foreground="White" FontSize="13" FontWeight="SemiBold"/>
+                    </Border>
+                    <Button Content="►" Width="40" Height="40" 
+                            Style="{StaticResource ActionButtonStyle}" Margin="5,0"/>
+                    <ComboBox Width="120" Height="40" Background="#3d2d6d" 
+                              Foreground="White" BorderThickness="0" Margin="10,0,0,0"
+                              VerticalContentAlignment="Center" Padding="10,0">
+                        <ComboBoxItem Content="10 / página" IsSelected="True"/>
+                        <ComboBoxItem Content="25 / página"/>
+                        <ComboBoxItem Content="50 / página"/>
+                        <ComboBoxItem Content="100 / página"/>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
