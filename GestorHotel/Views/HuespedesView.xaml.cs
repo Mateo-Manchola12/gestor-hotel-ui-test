@@ -24,9 +24,9 @@ public partial class HuespedesView : Page
             new ReservationData 
             { 
                 GuestName = "Xylara-Torak", 
-                GuestType = "Suite Lunar",
+                GuestType = "Diplomat",
                 RoomNumber = "Suite 401",
-                RoomType = "Suite timor",
+                RoomType = "Suite Lunar",
                 CheckIn = "May 4, 2024",
                 CheckOut = "May 6, 2024",
                 Status = "Confirmada",
@@ -38,9 +38,9 @@ public partial class HuespedesView : Page
             new ReservationData 
             { 
                 GuestName = "Zelora Primee", 
-                GuestType = "Edares",
+                GuestType = "Explorer",
                 RoomNumber = "Pod 206",
-                RoomType = "Pod 206",
+                RoomType = "Pod Estelar",
                 CheckIn = "May 4, 2024",
                 CheckOut = "May 6, 2024",
                 Status = "Pendiente",
@@ -52,9 +52,9 @@ public partial class HuespedesView : Page
             new ReservationData 
             { 
                 GuestName = "Captain Vlex", 
-                GuestType = "Estelar 305",
+                GuestType = "Commander",
                 RoomNumber = "Estelar 305",
-                RoomType = "Estelar 305",
+                RoomType = "Habitación Estelar",
                 CheckIn = "May 4, 2024",
                 CheckOut = "May 6, 2024",
                 Status = "Confirmada",
@@ -66,7 +66,7 @@ public partial class HuespedesView : Page
             new ReservationData 
             { 
                 GuestName = "Dr. Zorgul", 
-                GuestType = "Dr. Zorgul",
+                GuestType = "Scientist",
                 RoomNumber = "Galáctica 708",
                 RoomType = "Galáctica",
                 CheckIn = "May 4, 2024",
@@ -80,7 +80,7 @@ public partial class HuespedesView : Page
             new ReservationData 
             { 
                 GuestName = "Kargox", 
-                GuestType = "Kergox",
+                GuestType = "Trader",
                 RoomNumber = "Galáctica 708",
                 RoomType = "Galáctica",
                 CheckIn = "May 4, 2024",
